@@ -14,7 +14,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y git python3 python3-venv
-        
+        rm -rf depot_tools
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
         echo 'export PATH="${HOME}/depot_tools:$PATH"' >> $GITHUB_ENV
 
     - name: Get Thorium code
