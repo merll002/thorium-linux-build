@@ -25,7 +25,7 @@ jobs:
     - name: Get Chromium code
       run: |
         mkdir $HOME/chromium && cd $HOME/chromium
-        fetch --nohooks chromium
+        $HOME/depot_tools/fetch --nohooks chromium
         cd src
 
     - name: Install additional build dependencies
@@ -44,7 +44,7 @@ jobs:
     - name: Build Thorium
       run: |
         cd $HOME/chromium/src
-        autoninja -C out/thorium thorium chrome_sandbox chromedriver thorium_shell -j8
+        $HOME/depot_tools/autoninja -C out/thorium thorium chrome_sandbox chromedriver thorium_shell -j8
 
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
