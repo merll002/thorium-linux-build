@@ -15,12 +15,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y git python3 python3-venv
         cd $HOME
-        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git -j4 --depth 1
         echo 'export PATH="${HOME}/depot_tools:$PATH"' >> $GITHUB_ENV
 
     - name: Get Thorium code
       run: |
-        git clone --recursive https://github.com/Alex313031/thorium.git $HOME/thorium
+        git clone -j4 --depth 1 --recursive https://github.com/Alex313031/thorium.git $HOME/thorium
 
     - name: Get Chromium code
       run: |
