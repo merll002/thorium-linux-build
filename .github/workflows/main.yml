@@ -46,7 +46,7 @@ jobs:
         autoninja -C out/thorium thorium chrome_sandbox chromedriver thorium_shell -j8
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: thorium-build
         path: $HOME/chromium/src/out/thorium/
