@@ -1,0 +1,57 @@
+name: Build Thorium
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y git python3 python3-venv
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        echo 'export PATH="${HOME}/depot_tools:$PATH"' >> $GITHUB_ENV
+
+    - name: Get Thorium code
+      run: |
+        git clone --recursive https://github.com/Alex313031/thorium.git $HOME/thorium
+
+    - name: Get Chromium code
+      run: |
+        mkdir $HOME/chromium && cd $HOME/chromium
+        fetch --nohooks chromium
+        cd src
+
+    - name: Install additional build dependencies
+      run: ./build/install-build-deps.sh --no-nacl
+
+    - name: Run hooks
+      run: gclient runhooks
+
+    - name: Set up build
+      run: |
+        cd $HOME/thorium
+        ./trunk.sh
+        ./version.sh
+        ./setup.sh
+
+    - name: Build Thorium
+      run: |
+        cd $HOME/chromium/src
+        autoninja -C out/thorium thorium chrome_sandbox chromedriver thorium_shell -j8
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: thorium-build
+        path: $HOME/chromium/src/out/thorium/
