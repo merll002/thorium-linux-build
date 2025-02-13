@@ -38,7 +38,7 @@ jobs:
     - name: Get Chromium code
       run: |
         mkdir $HOME/chromium && cd $HOME/chromium
-        $HOME/depot_tools/fetch --nohooks chromium --no-history
+        $HOME/depot_tools/fetch --nohooks --nohistory chromium 
         cd src
 
     - name: Install additional build dependencies
