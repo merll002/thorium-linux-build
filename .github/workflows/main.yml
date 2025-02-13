@@ -38,11 +38,12 @@ jobs:
     - name: Get Chromium code
       run: |
         mkdir $HOME/chromium && cd $HOME/chromium
-        $HOME/depot_tools/fetch --nohooks --nohistory chromium 
-        cd src
+        $HOME/depot_tools/fetch --nohooks --nohistory chromium
 
     - name: Install additional build dependencies
-      run: ./build/install-build-deps.sh --no-nacl
+      run: |
+        cd $HOME/chromium/src
+        ./build/install-build-deps.sh --no-nacl
 
     - name: Run hooks
       run: gclient runhooks
