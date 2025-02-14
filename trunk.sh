@@ -10,6 +10,7 @@ c0='\033[0m' # Reset Text
 bold='\033[1m' # Bold Text
 underline='\033[4m' # Underline Text
 TERM=xterm
+export PATH=$HOME/depot_tools:$PATH
 # Error handling
 yell() { echo "$0: $*" >&2; }
 die() { yell "$*"; exit 111; }
