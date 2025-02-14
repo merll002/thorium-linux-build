@@ -51,8 +51,14 @@ jobs:
     - name: Set up build
       run: |
         cd $HOME/thorium
+        echo Running trunk.sh
+        echo
         TERM=xterm ./trunk.sh
+        echo Running version.sh
+        echo
         TERM=xterm ./version.sh
+        echo Running setup.sh
+        echo
         TERM=xterm ./setup.sh
 
     - name: Build Thorium
