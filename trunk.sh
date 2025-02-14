@@ -9,7 +9,7 @@ GRE='\033[1;32m' # Green
 c0='\033[0m' # Reset Text
 bold='\033[1m' # Bold Text
 underline='\033[4m' # Underline Text
-
+TERM=xterm
 # Error handling
 yell() { echo "$0: $*" >&2; }
 die() { yell "$*"; exit 111; }
@@ -65,7 +65,7 @@ git checkout -f origin/main &&
 git clean -ffd &&
 git clean -ffd &&
 
-git rebase-update &&
+git rebase &&
 
 git fetch --tags &&
 
