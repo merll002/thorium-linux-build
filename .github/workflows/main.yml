@@ -33,7 +33,7 @@ jobs:
 
     - name: Get Thorium code
       run: |
-        git clone -j4 --depth 1 --recursive https://github.com/Alex313031/thorium.git $HOME/thorium
+        git clone -j4 --depth 1 --recursive https://github.com/merll002/thorium.git $HOME/thorium
 
     - name: Get Chromium code
       run: |
