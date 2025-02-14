@@ -66,7 +66,7 @@ git checkout -f origin/main &&
 git clean -ffd &&
 git clean -ffd &&
 
-git rebase master &&
+git rebase main &&
 
 git fetch --tags &&
 
