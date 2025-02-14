@@ -46,7 +46,7 @@ jobs:
         ./build/install-build-deps.sh --no-nacl
 
     - name: Run hooks
-      run: gclient runhooks
+      run: $HOME/depot_tools/gclient runhooks
 
     - name: Set up build
       run: |
